@@ -9,30 +9,15 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const audioRef = useRef(null);
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-
-    setTimeout(() => {
-      if (audioRef.current) {
-        audioRef.current.volume = 0.8;
-        audioRef.current.play().catch((err) => console.log(err));
-      }
-    }, 300);
-  };
-
-  return (
+  return isLoading ? (
+    <LoadingScreen onComplete={() => setIsLoading(false)} />
+  ) : (
     <>
-      {isLoading ? (
-        <LoadingScreen onComplete={handleLoadingComplete} />
-      ) : (
-        <div>
-          <Hero />
-          <Envelope />
-          <WillYouBeMine />
-        </div>
-      )}
-
       <audio ref={audioRef} src={song} loop />
+
+      <Hero audioRef={audioRef} />
+      <Envelope />
+      <WillYouBeMine />
     </>
   );
 };

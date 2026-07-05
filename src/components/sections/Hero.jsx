@@ -3,10 +3,41 @@ import Stars from "../effects/Stars";
 import FloatingHearts from "../effects/FloatingHearts";
 import CursorGlow from "../effects/CursorGlow";
 import { Heart } from "lucide-react";
+import { Play, Pause } from "lucide-react";
+import { useState } from "react";
 
-const Hero = () => {
+const Hero = ({audioRef}) => {
+
+  const [playing, setPlaying] = useState(false);
+
+const toggleMusic = () => {
+  if (!audioRef.current) return;
+
+  if (playing) {
+    audioRef.current.pause();
+  } else {
+    audioRef.current.volume = 0.75;
+    audioRef.current.play();
+  }
+
+  setPlaying(!playing);
+};
+
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050816] px-6 text-center">
+
+      <div className="absolute top-6 right-6 z-50">
+  <div className="absolute top-6 right-6 z-50">
+  <button
+    onClick={toggleMusic}
+    className="flex items-center justify-center gap-3 rounded-full border border-pink-400/40 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-pink-500/30 transition duration-200 hover:from-pink-400 hover:to-purple-400 min-w-[200px] md:min-w-[200px]"
+  >
+    {playing ? <Pause size={18} /> : <Play size={18} />}
+    {playing ? "Enjoy Music ❤" : "Play Music"}
+  </button>
+</div>
+</div>
 
       {/* Cursor Glow */ }
       <CursorGlow />
