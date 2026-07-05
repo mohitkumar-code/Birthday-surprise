@@ -5,6 +5,8 @@ import CursorGlow from "../effects/CursorGlow";
 import { Heart } from "lucide-react";
 import { Play, Pause } from "lucide-react";
 import { useState } from "react";
+import januu from "../../assets/images/januu.jpg";
+
 
 const Hero = ({audioRef}) => {
 
@@ -62,10 +64,10 @@ const toggleMusic = () => {
         >
           <div className="relative">
             <img
-              src="/src/assets/images/januu.jpg"
+              src={januu}
               alt="Januu"
               className="h-40 w-40 rounded-full border-4 border-pink-400 object-cover shadow-lg shadow-pink-500/40 md:h-52 md:w-52"
-            />
+            /> 
             <div className="absolute inset-0 animate-pulse rounded-full bg-pink-400/20 blur-xl" />
           </div>
         </motion.div>
